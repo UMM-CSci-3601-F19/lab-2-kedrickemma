@@ -24,6 +24,7 @@ public class Server {
 
     // Initialize dependencies
     UserController userController = buildUserController();
+    TodoController todoController = buildTodoController();
 
     // Configure Spark
     port(4567);
@@ -38,6 +39,7 @@ public class Server {
     // Redirects to create simpler URLs
     redirect.get("/about", "/about.html");
     redirect.get("/users", "/users.html");
+    redirect.get("/todos", "/todos.html");
 
     // API endpoints
 
@@ -46,10 +48,10 @@ public class Server {
     // List users, filtered using query parameters
     get("api/users", userController::getUsers);
 
-    /**get("api/todos/:id", todoController::getTodo);
+    get("api/todos/:id", todoController::getTodo);
 
     get("api/todos", todoController::getTodos);
- */
+
     // An example of throwing an unhandled exception so you can see how the
     // Java Spark debugger displays errors like this.
     get("api/error", (req, res) -> {
@@ -90,6 +92,34 @@ public class Server {
     }
 
     return userController;
+  }
+
+  /***
+   * Create a database using the json fie, use it as
+   * data source for a new TodoController
+   *
+   * Constructing the controller might throw an IOException if
+   * there are problems reading from the JSON "database" file.
+   * If that happens we'll print out an error message and shut
+   * the server down.
+   * @throws IOException if we can't open or read the to-do data file
+   */
+  private static TodoController buildTodoController() {
+    TodoController todoController = null;
+
+    try {
+      todoDatabase = new TodoDatabase(TODO_DATA_FILE);
+      todoController = new TodoController(todoDatabase);
+    } catch (IOException e) {
+      System.err.println("The server failed to load the user data; shutting down.");
+      e.printStackTrace(System.err);
+
+      // Shut the server down
+      stop();
+      System.exit(1);
+    }
+
+    return todoController;
   }
 
   // Enable GZIP for all responses

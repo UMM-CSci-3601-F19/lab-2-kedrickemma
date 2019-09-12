@@ -38,10 +38,10 @@ public class TodoDatabase {
   }
 
   /**
-   * Get an array of all the Todo satisfying the queries in the params.
+   * Get an array of all the Todos satisfying the queries in the params.
    *
    * @param queryParams map of required key-value pairs for the query
-   * @return an array of all the Todo matching the given criteria
+   * @return an array of all the Todos matching the given criteria
    */
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodo = allTodo;

@@ -22,11 +22,11 @@ public class TodoController {
   /**
    * Construct a controller for Todos.
    * <p>
-   * This loads the "database" of Todo info from a JSON file and
+   * This loads the "database" of todos info from a JSON file and
    * stores that internally so that (subsets of) Todos can be returned
    * in response to requests.
    *
-   * @param database the database containing Todo data
+   * @param database the database containing Todos data
    */
   public TodoController(TodoDatabase database) {
     gson = new Gson();
@@ -34,12 +34,12 @@ public class TodoController {
   }
 
   /**
-   * Get the single Todo specified by the `id` parameter in the request.
+   * Get the single Todos specified by the `id` parameter in the request.
    *
    * @param req the HTTP request
    * @param res the HTTP response
-   * @return a success JSON object if the Todo with that ID is found, a fail
-   * JSON object if no Todo with that ID is found
+   * @return a success JSON object if the Todos with that ID is found, a fail
+   * JSON object if no Todos with that ID is found
    */
   public JsonObject getTodo(Request req, Response res) {
     res.type("application/json");
