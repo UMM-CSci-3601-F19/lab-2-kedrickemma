@@ -15,18 +15,18 @@ import static umm3601.Util.*;
 public class UserController {
 
   private final Gson gson;
-  private Database database;
+  private UserDatabase database;
 
   /**
    * Construct a controller for users.
    * <p>
-   * This loads the "database" of user info from a JSON file and
+   * This loads the "UserDatabase" of user info from a JSON file and
    * stores that internally so that (subsets of) users can be returned
    * in response to requests.
    *
    * @param database the database containing user data
    */
-  public UserController(Database database) {
+  public UserController(UserDatabase database) {
     gson = new Gson();
     this.database = database;
   }
@@ -52,7 +52,7 @@ public class UserController {
   }
 
   /**
-   * Get a JSON response with a list of all the users in the "database".
+   * Get a JSON response with a list of all the users in the "UserDatabase".
    *
    * @param req the HTTP request
    * @param res the HTTP response
