@@ -14,9 +14,9 @@
 
 <div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
-
 <label for="owner">Owner:</label>
 <select id="owner" name="owner">
+  <option value="">Select a Owner</option>
   <option value="Barry">Barry</option>
   <option value="Blanche">Blanche</option>
   <option value="Dawn">Dawn</option>
@@ -26,8 +26,25 @@
 </select>
 <button type="button" id="getAllTodosByOwner"> Get Todos by Owner</button>
 
+<label for="status">Status:</label>
+<select id="status" name="status">
+  <option value="">Select a Status</option>
+  <option value="true">Complete</option>
+  <option value="false">Incomplete</option>
+</select>
+<button type="button" id="getAllTodosByStatus"> Get Todos by Status</button>
 
-
+<br>
+<label for="category">Category:</label>
+<select id="category" name="category">
+  <option value="">Select a Category</option>
+  <option value="groceries">Groceries</option>
+  <option value="homework">Homework</option>
+  <option value="software design">Software Design</option>
+  <option value="video games">Video Games</option>
+</select>
+<button type="button" id="getAllTodosByCategory"> get Todos by Category </button>
+<br>
 
 <script>
   window.onload = function () {
@@ -38,6 +55,12 @@
 
     var element = document.getElementById('getAllTodosByOwner');
     element.addEventListener("click", getAllTodosByOwner, true);
+
+    var element = document.getElementById('getAllTodosByStatus');
+    element.addEventListener("click", getAllTodosByStatus, true);
+
+    var element = document.getElementById('getAllTodosByCategory');
+    element.addEventListener("click", getAllTodosByCategory, true);
   }
 </script>
 </body>
