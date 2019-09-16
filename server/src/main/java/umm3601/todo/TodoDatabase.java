@@ -46,12 +46,19 @@ public class TodoDatabase {
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodo = allTodo;
 
-
     // Process other query parameters here...
+    
+    // Get specific number of todos if defined
+    if (queryParams.containsKey("targetNumber")) {
+        filteredTodo = getNumberTodos(Todo[] filteredTodo, int targetNumber)
+      }
 
     return filteredTodo;
   }
 
+  public Todo[] getNumberTodos(Todo[] filteredTodo, int targetNumber) {
+	  return filteredTodo.sublist(0, targetNumber - 1);
+  }
 
 
 }
