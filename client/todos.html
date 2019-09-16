@@ -8,19 +8,36 @@
   <script type="text/javascript" src="javascript/todos.js"></script>
 </head>
 <body>
-<button type="button" id="getAll">Get All Todos</button>
+<button type="button" id="getAllTodos">Get All Todos</button>
 
 <hr/>
 
 <div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
 
+<label for="owner">Owner:</label>
+<select id="owner" name="owner">
+  <option value="Barry">Barry</option>
+  <option value="Blanche">Blanche</option>
+  <option value="Dawn">Dawn</option>
+  <option value="Fry">Fry</option>
+  <option value="Roberta">Roberta</option>
+  <option value="Workman">Workman</option>
+</select>
+<button type="button" id="getAllTodosByOwner"> Get Todos by Owner</button>
+
+
+
+
 <script>
   window.onload = function () {
     console.log("The page is loaded now!");
 
-    var element = document.getElementById('getAll');
+    var element = document.getElementById('getAllTodos');
     element.addEventListener("click", getAllTodos, true);
+
+    var element = document.getElementById('getAllTodosByOwner');
+    element.addEventListener("click", getAllTodosByOwner, true);
   }
 </script>
 </body>
