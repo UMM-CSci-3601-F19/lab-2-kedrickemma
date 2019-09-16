@@ -46,12 +46,18 @@ public class TodoDatabase {
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodo = allTodo;
 
+    if (queryParams.containsKey("limit")) {
+      int limit = Integer.parseInt(queryParams.get("limit")[7]);
+      filteredTodo = filterUsersByAge(filteredUsers, targetAge);
+    }
 
     // Process other query parameters here...
 
     return filteredTodo;
   }
 
-
+  public Todo[] filterTodosByLimit(Todo[] todos, int limit) {
+    return Arrays.stream(todos).limit(limit).toArray(Todo[]::new);
+  }
 
 }
