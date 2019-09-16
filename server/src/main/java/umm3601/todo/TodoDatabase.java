@@ -1,9 +1,12 @@
 package umm3601.todo;
 
 import com.google.gson.Gson;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.sun.xml.internal.bind.v2.TODO;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -47,10 +50,24 @@ public class TodoDatabase {
     Todo[] filteredTodo = allTodo;
 
     if (queryParams.containsKey("limit")) {
-      int limit = Integer.parseInt(queryParams.get("limit")[7]);
-      filteredTodo = filterUsersByAge(filteredUsers, targetAge);
+      int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
+      filteredTodo = filterTodosByLimit(filteredTodo, targetLimit);
     }
 
+    if (queryParams.containsKey("status")) {
+      String targetStatus = queryParams.get("status")[0];
+      filteredTodo = filterTodosByStatus(filteredTodo, targetStatus);
+    }
+
+    if (queryParams.containsKey("owner")) {
+      String targetOwner = queryParams.get("owner")[0];
+      filteredTodo = filterTodosByOwner(filteredTodo, targetOwner);
+    }
+
+    if (queryParams.containsKey("category")) {
+      String targetCategory = queryParams.get("category")[0];
+      filteredTodo = filterTodosByCategory(filteredTodo, targetCategory);
+    }
     // Process other query parameters here...
 
     return filteredTodo;
@@ -60,4 +77,15 @@ public class TodoDatabase {
     return Arrays.stream(todos).limit(limit).toArray(Todo[]::new);
   }
 
+  public Todo[] filterTodosByStatus(Todo[] todos, String status){
+    return Arrays.stream(todos).filter(x -> x.status == status).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByOwner(Todo[] todos, String owner){
+    return Arrays.stream(todos).filter(x -> x.owner == owner).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByCategory(Todo[] todos, String category){
+    return Arrays.stream(todos).filter(x -> x.category == category).toArray(Todo[]::new);
+  }
 }
