@@ -47,9 +47,9 @@ public class Server {
     get("api/users/:id", userController::getUser);
     // List users, filtered using query parameters
     get("api/users", userController::getUsers);
-
+    // Get Specific todo
     get("api/todos/:id", todoController::getTodo);
-
+    // List todos, filtered using query parameters
     get("api/todos", todoController::getTodos);
 
     // An example of throwing an unhandled exception so you can see how the
@@ -111,7 +111,7 @@ public class Server {
       todoDatabase = new TodoDatabase(TODO_DATA_FILE);
       todoController = new TodoController(todoDatabase);
     } catch (IOException e) {
-      System.err.println("The server failed to load the user data; shutting down.");
+      System.err.println("The server failed to load the todo data; shutting down.");
       e.printStackTrace(System.err);
 
       // Shut the server down
