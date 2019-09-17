@@ -49,20 +49,21 @@ public class TodoDatabase {
     // Process other query parameters here...
 
     // Get specific number of todos if defined
-    if (queryParams.containsKey("Number")) {
-        filteredTodo = getNumberTodos(filteredTodo, S);
+    if (queryParams.containsKey("number")) {
+    	 int targetNumber = Integer.parseInt(queryParams.get("number")[0]);
+        filteredTodo = getNumberTodos(filteredTodo, targetNumber);
       }
 
     return filteredTodo;
   }
 
   public Todo[] getNumberTodos(Todo[] filteredTodo, int targetNumber) {
-	  Todo[] returnTodo = new Todo[targetNumber];
+	  Todo[] rt = new Todo[targetNumber];
 	  for (int i = 0; i < targetNumber; i++) {
-	    returnTodo[i] = filteredTodo[i];
+	    rt[i] = filteredTodo[i];
     }
 
-	  return returnTodo;
+	  return rt;
   }
 
 
