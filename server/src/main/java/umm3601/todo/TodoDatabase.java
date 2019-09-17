@@ -1,31 +1,28 @@
 package umm3601.todo;
 
 import com.google.gson.Gson;
-//import com.sun.org.apache.xpath.internal.operations.Bool;
-//import com.sun.xml.internal.bind.v2.TO-DO;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
 /**
- * A fake "database" of Todo info
+ * A fake "database" of To-do info
  * <p>
  * Since we don't want to complicate this lab with a real database,
- * we're going to instead just read a bunch of Todo data from a
+ * we're going to instead just read a bunch of To-do data from a
  * specified JSON file, and then provide various database-like
  * methods that allow the `TodoController` to "query" the "database".
  */
 public class TodoDatabase {
 
-  private Todo[] allTodo;
+  private Todo[] allTodos;
 
-  public TodoDatabase(String TodoDataFile) throws IOException {
+  public TodoDatabase(String todoDataFile) throws IOException {
     Gson gson = new Gson();
-    FileReader reader = new FileReader(TodoDataFile);
-    allTodo = gson.fromJson(reader, Todo[].class);
+    FileReader reader = new FileReader(todoDataFile);
+    allTodos = gson.fromJson(reader, Todo[].class);
   }
 
   /**
@@ -37,7 +34,7 @@ public class TodoDatabase {
    * with that ID
    */
   public Todo getTodo(String id) {
-    return Arrays.stream(allTodo).filter(x -> x._id.equals(id)).findFirst().orElse(null);
+    return Arrays.stream(allTodos).filter(x -> x._id.equals(id)).findFirst().orElse(null);
   }
 
   /**
@@ -47,38 +44,39 @@ public class TodoDatabase {
    * @return an array of all the Todos matching the given criteria
    */
   public Todo[] listTodos(Map<String, String[]> queryParams) {
-    Todo[] filteredTodo = allTodo;
+    Todo[] filteredTodos = allTodos;
 
     if (queryParams.containsKey("limit")) {
-      int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
-      filteredTodo = filterTodosByLimit(filteredTodo, targetLimit);
+      int targetLimit = Integer.parseInt(queryParams.get("limit")[7]);
+      filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
     }
 
     if (queryParams.containsKey("status")) {
-      String targetStatus = queryParams.get("status")[0];
-      filteredTodo = filterTodosByStatus(filteredTodo, targetStatus);
+      Boolean targetStatus = Boolean.parseBoolean(queryParams.get("status")[0]);
+      filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
     }
 
     if (queryParams.containsKey("owner")) {
       String targetOwner = queryParams.get("owner")[0];
-      filteredTodo = filterTodosByOwner(filteredTodo, targetOwner);
+      filteredTodos = filterTodosByOwner(filteredTodos, targetOwner);
     }
 
     if (queryParams.containsKey("category")) {
       String targetCategory = queryParams.get("category")[0];
-      filteredTodo = filterTodosByCategory(filteredTodo, targetCategory);
+      filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
     }
     // Process other query parameters here...
 
-    return filteredTodo;
+    return filteredTodos;
   }
 
-  public Todo[] filterTodosByLimit(Todo[] todos, int limit) {
-    return Arrays.stream(todos).limit(limit).toArray(Todo[]::new);
+  public Todo[] filterTodosByLimit(Todo[] todos, int targetLimit) {
+    return Arrays.stream(todos).limit(targetLimit).toArray(Todo[]::new);
   }
 
-  public Todo[] filterTodosByStatus(Todo[] todos, String status){
-    return Arrays.stream(todos).filter(x -> x.status.equals(status)).toArray(Todo[]::new);
+
+  public Todo[] filterTodosByStatus(Todo[] todos, Boolean status){
+    return Arrays.stream(todos).filter(x -> x.status == status).toArray(Todo[]::new);
   }
 
   public Todo[] filterTodosByOwner(Todo[] todos, String owner){
