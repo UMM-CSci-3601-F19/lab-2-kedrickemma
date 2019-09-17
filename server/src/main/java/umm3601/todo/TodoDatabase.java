@@ -78,14 +78,15 @@ public class TodoDatabase {
   }
 
   public Todo[] filterTodosByStatus(Todo[] todos, String status){
-    return Arrays.stream(todos).filter(x -> x.status == status).toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.status.equals(status)).toArray(Todo[]::new);
   }
 
   public Todo[] filterTodosByOwner(Todo[] todos, String owner){
-    return Arrays.stream(todos).filter(x -> x.owner == owner).toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.owner.equals(owner)).toArray(Todo[]::new);
   }
 
   public Todo[] filterTodosByCategory(Todo[] todos, String category){
-    return Arrays.stream(todos).filter(x -> x.category == category).toArray(Todo[]::new);
+    return Arrays.stream(todos).filter(x -> x.category.equals(category)).toArray(Todo[]::new);
   }
 }
+
