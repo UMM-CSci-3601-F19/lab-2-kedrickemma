@@ -21,7 +21,7 @@ public class FullTodoListFromDB {
     Todo[] allTodos = db.listTodos(new HashMap<>());
     Todo firstTodo = allTodos[0];
     assertEquals("Incorrect owner", "Blanche", firstTodo.owner);
-    assertEquals("Incorrect status", false, firstTodo.status);
+    assertEquals("Incorrect status", "false", firstTodo.status);
     assertEquals("Incorrect body", "In sunt ex non tempor cillum commodo amet incididunt anim qui commodo quis. Cillum non labore ex sint esse.", firstTodo.body);
     assertEquals("Incorrect category", "software design", firstTodo.category);
   }

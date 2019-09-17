@@ -29,11 +29,11 @@ public class TodoDatabase {
   }
 
   /**
-   * Get the single Todo specified by the given ID. Return
-   * `null` if there is no Todo with that ID.
+   * Get the single To-do specified by the given ID. Return
+   * `null` if there is no To-do with that ID.
    *
-   * @param id the ID of the desired Todo
-   * @return the Todo with the given ID, or null if there is no Todo
+   * @param id the ID of the desired To-do
+   * @return the To-do with the given ID, or null if there is no To-do
    * with that ID
    */
   public Todo getTodo(String id) {
