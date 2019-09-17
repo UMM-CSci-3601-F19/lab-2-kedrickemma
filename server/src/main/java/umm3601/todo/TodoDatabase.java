@@ -47,17 +47,22 @@ public class TodoDatabase {
     Todo[] filteredTodo = allTodo;
 
     // Process other query parameters here...
-    
+
     // Get specific number of todos if defined
-    if (queryParams.containsKey("targetNumber")) {
-        filteredTodo = getNumberTodos(Todo[] filteredTodo, int targetNumber)
+    if (queryParams.containsKey("Number")) {
+        filteredTodo = getNumberTodos(filteredTodo, S);
       }
 
     return filteredTodo;
   }
 
   public Todo[] getNumberTodos(Todo[] filteredTodo, int targetNumber) {
-	  return filteredTodo.sublist(0, targetNumber - 1);
+	  Todo[] returnTodo = new Todo[targetNumber];
+	  for (int i = 0; i < targetNumber; i++) {
+	    returnTodo[i] = filteredTodo[i];
+    }
+
+	  return returnTodo;
   }
 
 
