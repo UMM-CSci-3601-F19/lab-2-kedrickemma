@@ -44,6 +44,9 @@
   <option value="video games">Video Games</option>
 </select>
 <button type="button" id="getAllTodosByCategory"> get Todos by Category </button>
+
+<label for="limit">Limit:</label><input id="limit" type="text" name="limit">
+<button type="button" id="limitNumberOfTodos"> limit the amount of Todos shown</button>
 <br>
 
 <script>
@@ -53,14 +56,17 @@
     var element = document.getElementById('getAllTodos');
     element.addEventListener("click", getAllTodos, true);
 
-    var element = document.getElementById('getAllTodosByOwner');
+    element = document.getElementById('getAllTodosByOwner');
     element.addEventListener("click", getAllTodosByOwner, true);
 
-    var element = document.getElementById('getAllTodosByStatus');
+    element = document.getElementById('getAllTodosByStatus');
     element.addEventListener("click", getAllTodosByStatus, true);
 
-    var element = document.getElementById('getAllTodosByCategory');
+    element = document.getElementById('getAllTodosByCategory');
     element.addEventListener("click", getAllTodosByCategory, true);
+
+    element = document.getElementById('limitNumberOfTodos');
+    element.addEventListener("click", limitNumberOfTodos, true);
   }
 </script>
 </body>
