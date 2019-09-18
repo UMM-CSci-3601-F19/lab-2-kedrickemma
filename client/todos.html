@@ -8,11 +8,8 @@
   <script type="text/javascript" src="javascript/todos.js"></script>
 </head>
 <body>
+// This button gets all 300 todos and dumps them into the webpage.
 <button type="button" id="getAllTodos">Get All Todos</button>
-
-<hr/>
-
-<div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
 <label for="owner">Owner:</label>
 <select id="owner" name="owner">
@@ -24,17 +21,14 @@
   <option value="Roberta">Roberta</option>
   <option value="Workman">Workman</option>
 </select>
-<button type="button" id="getAllTodosByOwner"> Get Todos by Owner</button>
-<br>
+
 <label for="status">Status:</label>
 <select id="status" name="status">
   <option value="">Select a Status</option>
   <option value="true">Complete</option>
   <option value="false">Incomplete</option>
 </select>
-<button type="button" id="getAllTodosByStatus"> Get Todos by Status</button>
 
-<br>
 <label for="category">Category:</label>
 <select id="category" name="category">
   <option value="">Select a Category</option>
@@ -43,17 +37,16 @@
   <option value="software design">Software Design</option>
   <option value="video games">Video Games</option>
 </select>
-<button type="button" id="getAllTodosByCategory"> Get Todos by Category </button>
-<br>
 
 <label for="body">Body:</label>
 <input id="body" type="text" name="body">
-<button type="button" id="getAllTodosByBodyContent">Search Todos by Body</button>
+
+<label for="limit">Limit: </label><input id="limit" type="text" name="limit">
 <br>
 
-<label for="limit">Limit:</label><input id="limit" type="text" name="limit">
-<button type="button" id="limitNumberOfTodos"> Limit the amount of Todos shown</button>
-<br>
+<hr/>
+
+<div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
 <script>
   window.onload = function () {
