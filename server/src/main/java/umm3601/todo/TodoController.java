@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import spark.Request;
 import spark.Response;
-import umm3601.todo.Todo;
-import umm3601.todo.TodoDatabase;
 
 import java.io.IOException;
 
@@ -44,9 +42,9 @@ public class TodoController {
   public JsonObject getTodo(Request req, Response res) {
     res.type("application/json");
     String id = req.params("id");
-    Todo Todo = database.getTodo(id);
-    if (Todo != null) {
-      return buildSuccessJsonResponse("Todo", gson.toJsonTree(Todo));
+    Todo todo = database.getTodo(id);
+    if (todo != null) {
+      return buildSuccessJsonResponse("Todo", gson.toJsonTree(todo));
     } else {
       String message = "Todo with ID " + id + " wasn't found.";
       return buildFailJsonResponse("id", message);
@@ -62,8 +60,8 @@ public class TodoController {
    */
   public JsonObject getTodos(Request req, Response res) {
     res.type("application/json");
-    Todo[] Todos = database.listTodos(req.queryMap().toMap());
-    return buildSuccessJsonResponse("Todos", gson.toJsonTree(Todos));
+    Todo[] todos = database.listTodos(req.queryMap().toMap());
+    return buildSuccessJsonResponse("todos", gson.toJsonTree(todos));
   }
 
 }

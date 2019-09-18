@@ -47,7 +47,8 @@ public class Server {
     get("api/users/:id", userController::getUser);
     // List users, filtered using query parameters
     get("api/users", userController::getUsers);
-    // Get Specific todo
+
+    // Get Specific to-do
     get("api/todos/:id", todoController::getTodo);
     // List todos, filtered using query parameters
     get("api/todos", todoController::getTodos);

@@ -8,19 +8,65 @@
   <script type="text/javascript" src="javascript/todos.js"></script>
 </head>
 <body>
-<button type="button" id="getAll">Get All Todos</button>
+<button type="button" id="getAllTodos">Get All Todos</button>
 
 <hr/>
 
 <div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
+<label for="owner">Owner:</label>
+<select id="owner" name="owner">
+  <option value="">Select a Owner</option>
+  <option value="Barry">Barry</option>
+  <option value="Blanche">Blanche</option>
+  <option value="Dawn">Dawn</option>
+  <option value="Fry">Fry</option>
+  <option value="Roberta">Roberta</option>
+  <option value="Workman">Workman</option>
+</select>
+<button type="button" id="getAllTodosByOwner"> Get Todos by Owner</button>
+
+<label for="status">Status:</label>
+<select id="status" name="status">
+  <option value="">Select a Status</option>
+  <option value="true">Complete</option>
+  <option value="false">Incomplete</option>
+</select>
+<button type="button" id="getAllTodosByStatus"> Get Todos by Status</button>
+
+<br>
+<label for="category">Category:</label>
+<select id="category" name="category">
+  <option value="">Select a Category</option>
+  <option value="groceries">Groceries</option>
+  <option value="homework">Homework</option>
+  <option value="software design">Software Design</option>
+  <option value="video games">Video Games</option>
+</select>
+<button type="button" id="getAllTodosByCategory"> get Todos by Category </button>
+
+<label for="limit">Limit:</label><input id="limit" type="text" name="limit">
+<button type="button" id="limitNumberOfTodos"> limit the amount of Todos shown</button>
+<br>
 
 <script>
   window.onload = function () {
     console.log("The page is loaded now!");
 
-    var element = document.getElementById('getAll');
+    var element = document.getElementById('getAllTodos');
     element.addEventListener("click", getAllTodos, true);
+
+    element = document.getElementById('getAllTodosByOwner');
+    element.addEventListener("click", getAllTodosByOwner, true);
+
+    element = document.getElementById('getAllTodosByStatus');
+    element.addEventListener("click", getAllTodosByStatus, true);
+
+    element = document.getElementById('getAllTodosByCategory');
+    element.addEventListener("click", getAllTodosByCategory, true);
+
+    element = document.getElementById('limitNumberOfTodos');
+    element.addEventListener("click", limitNumberOfTodos, true);
   }
 </script>
 </body>
