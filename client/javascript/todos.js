@@ -26,7 +26,7 @@ function getAllTodosByStatus() {
 }
 
 function getAllTodosByCategory() {
-  console.log("Getting all the todos by category - category is:" + document.getElementById("category"));
+  console.log("Getting all the todos by category");
 
   get("/api/todos?category=" + document.getElementById("category").value, function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
@@ -34,9 +34,17 @@ function getAllTodosByCategory() {
 }
 
 function limitNumberOfTodos() {
-  console.log("Getting all the todos based based on the limit.");
+  console.log("Getting all the todos based on the limit.");
 
   get("/api/todos?limit=" + document.getElementById("limit").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
+
+function getAllTodosByBodyContent() {
+  console.log("Getting all the todos based on phrase in body");
+
+  get("api/todos?limit=" + document.getElementById("body").value, function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }

@@ -65,6 +65,10 @@ public class TodoDatabase {
       String targetCategory = queryParams.get("category")[0];
       filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
     }
+
+    if (queryParams.containsKey("body")) {
+      String targetBody = queryParams.get("body")[0];
+    }
     // Process other query parameters here...
 
     return filteredTodos;
