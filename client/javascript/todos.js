@@ -4,7 +4,7 @@
 function getAllTodos() {
   console.log("Getting all the todos.");
 
-  get("/api/todo", function (returned_json) {
+  get("/api/todos", function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
@@ -12,7 +12,7 @@ function getAllTodos() {
 function getAllTodosByOwner() {
   console.log("Getting all the todos by owner.");
 
-  get("/api/todo?owner=" + document.getElementById("owner").value, function (returned_json) {
+  get("/api/todos?owner=" + document.getElementById("owner").value, function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
@@ -20,7 +20,7 @@ function getAllTodosByOwner() {
 function getAllTodosByStatus() {
   console.log("Getting all the todos by status.");
 
-  get("/api/todo?status=" + document.getElementById("status"), function (returned_json) {
+  get("/api/todos?status=" + document.getElementById("status"), function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
@@ -28,7 +28,7 @@ function getAllTodosByStatus() {
 function getAllTodosByCategory() {
   console.log("Getting all the todos by category.");
 
-  get("/api/todo?category=" + document.getElementById("category"), function (returned_json) {
+  get("/api/todos?category=" + document.getElementById("category"), function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
@@ -36,7 +36,7 @@ function getAllTodosByCategory() {
 function limitNumberOfTodos() {
   console.log("Getting all the todos based based on the limit.");
 
-  get("/api/todo?limit=" + document.getElementById("limit"), function (returned_json) {
+  get("/api/todos?limit=" + document.getElementById("limit"), function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }

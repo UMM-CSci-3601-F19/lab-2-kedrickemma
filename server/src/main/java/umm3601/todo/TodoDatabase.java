@@ -47,12 +47,12 @@ public class TodoDatabase {
     Todo[] filteredTodos = allTodos;
 
     if (queryParams.containsKey("limit")) {
-      int targetLimit = Integer.parseInt(queryParams.get("limit")[7]);
+      int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
       filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
     }
 
     if (queryParams.containsKey("status")) {
-      Boolean targetStatus = Boolean.parseBoolean(queryParams.get("status")[0]);
+      String targetStatus = queryParams.get("status")[0];
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
     }
 
@@ -75,15 +75,19 @@ public class TodoDatabase {
   }
 
 
-  public Todo[] filterTodosByStatus(Todo[] todos, Boolean status){
-    return Arrays.stream(todos).filter(x -> x.status == status).toArray(Todo[]::new);
+  public Todo[] filterTodosByStatus(Todo[] todos, String stat) {
+    if (stat.equals("true"))
+      return Arrays.stream(todos).filter(x -> x.status).toArray(Todo[]::new);
+    if (stat.equals("false"))
+      return Arrays.stream(todos).filter(x -> !x.status).toArray(Todo[]::new);
+    return Arrays.copyOf(todos, 0);
   }
 
-  public Todo[] filterTodosByOwner(Todo[] todos, String owner){
+  public Todo[] filterTodosByOwner(Todo[] todos, String owner) {
     return Arrays.stream(todos).filter(x -> x.owner.equals(owner)).toArray(Todo[]::new);
   }
 
-  public Todo[] filterTodosByCategory(Todo[] todos, String category){
+  public Todo[] filterTodosByCategory(Todo[] todos, String category) {
     return Arrays.stream(todos).filter(x -> x.category.equals(category)).toArray(Todo[]::new);
   }
 }
