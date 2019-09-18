@@ -9,11 +9,7 @@
 </head>
 <body>
 <button type="button" id="getAllTodos">Get All Todos</button>
-
-<hr/>
-
-<div id="jsonDump" style="margin-top:20px"> Json will go here</div>
-
+<br>
 <label for="owner">Owner:</label>
 <select id="owner" name="owner">
   <option value="">Select a Owner</option>
@@ -51,9 +47,11 @@
 <button type="button" id="getAllTodosByBodyContent">Search Todos by Body</button>
 <br>
 
-<label for="limit">Limit:</label><input id="limit" type="text" name="limit">
-<button type="button" id="limitNumberOfTodos"> Limit the amount of Todos shown</button>
-<br>
+<label for="limit">Get # Todos:</label><input id="limit" type="text" name="limit">
+<button type="button" id="limitNumberOfTodos"> Get the first x todos</button>
+
+<hr/>
+<div id="jsonDump" style="margin-top:20px"> Json will go here</div>
 
 <script>
   window.onload = function () {
@@ -76,6 +74,7 @@
 
     element = document.getElementById('getAllTodosByBodyContent');
     element.addEventListener("click", getAllTodosByBodyContent, true);
+
   }
 </script>
 </body>

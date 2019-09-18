@@ -7,6 +7,7 @@ function getAllTodos() {
   get("/api/todos", function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
+
 }
 
 function getAllTodosByOwner() {
