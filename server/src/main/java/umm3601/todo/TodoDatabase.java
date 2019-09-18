@@ -68,6 +68,7 @@ public class TodoDatabase {
 
     if (queryParams.containsKey("body")) {
       String targetBody = queryParams.get("body")[0];
+      filteredTodos = filterTodosByBody(filteredTodos, targetBody);
     }
     // Process other query parameters here...
 
@@ -93,6 +94,10 @@ public class TodoDatabase {
 
   public Todo[] filterTodosByCategory(Todo[] todos, String category) {
     return Arrays.stream(todos).filter(x -> x.category.equals(category)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByBody(Todo[] todos, String body) {
+    return Arrays.stream(todos).filter(x -> x.body.contains(body)).toArray(Todo[]::new);
   }
 }
 

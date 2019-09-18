@@ -32,19 +32,18 @@ function getAllTodosByCategory() {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
+function getAllTodosByBodyContent() {
+  console.log("Getting all the todos based on phrase in body");
+
+  get("api/todos?body=" + document.getElementById("body").value, function (returned_json) {
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });
+}
 
 function limitNumberOfTodos() {
   console.log("Getting all the todos based on the limit.");
 
   get("/api/todos?limit=" + document.getElementById("limit").value, function (returned_json) {
-    document.getElementById('jsonDump').innerHTML = returned_json;
-  });
-}
-
-function getAllTodosByBodyContent() {
-  console.log("Getting all the todos based on phrase in body");
-
-  get("api/todos?limit=" + document.getElementById("body").value, function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
